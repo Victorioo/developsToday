@@ -15,6 +15,7 @@ export default function Home() {
           "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"
         );
         const data = await res.json();
+        console.log(data);
         setMakes(data.Results);
       } catch (error) {
         console.error("Error fetching makes:", error);
@@ -40,8 +41,8 @@ export default function Home() {
             onChange={(e) => setSelectedMakeId(e.target.value)}
           >
             <option value="">Select a Make</option>
-            {makes.map((make) => (
-              <option key={make.MakeId} value={make.MakeId}>
+            {makes.map((make, i) => (
+              <option key={i} value={make.MakeId}>
                 {make.MakeName}
               </option>
             ))}
@@ -63,11 +64,22 @@ export default function Home() {
             ))}
           </select>
         </div>
-
         <Link
-          className="mt-4 px-4 py-2 bg-[#ff5d00] text-lg font-semibold text-white disabled:bg-[#ff5e0020] text-center rounded-md hover:cursor-pointer hover:bg-white hover:text-[#ff5d00] hover:border-solid border-2 border-[#ff5d00] transition-all" 
-          disabled={!selectedMakeId || !selectedYear}
-          href={`/result/${selectedMakeId}/${selectedYear}`}
+          className={`py-2 bg-[#ff5d00] text-lg font-semibold text-center rounded-md hover:cursor-pointer hover:bg-white hover:text-[#ff5d00] hover:border-solid border-2 border-[#ff5d00] transition-all text-white ${
+            !selectedMakeId || !selectedYear
+              ? "opacity-50 cursor-not-allowed border-[#ff5d00] text-[#ff5d00] hover:border-solid hover:bg-[#ff5d00] hover:text-white" 
+              : ""
+          }`}
+          href={
+            selectedMakeId && selectedYear
+              ? `/result/${selectedMakeId}/${selectedYear}`
+              : "#"
+          }
+          onClick={(e) => {
+            if (!selectedMakeId || !selectedYear) {
+              e.preventDefault(); // Prevenimos el clic si no hay valores seleccionados
+            }
+          }}
         >
           Next
         </Link>
