@@ -9,13 +9,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f5f5f5;
+    --foreground: #171717;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Ubuntu", "Ubuntu Mono", Arial, Helvetica, sans-serif;
+}
+
+p, a,li {
+  font-family: "Maven Pro", "Ubuntu", Arial, Helvetica, sans-serif;
 }

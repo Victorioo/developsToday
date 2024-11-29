@@ -1,15 +1,20 @@
-import localFont from "next/font/local";
+import { Ubuntu, Ubuntu_Mono, Maven_Pro } from 'next/font/google';
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const ubuntu = Ubuntu({
+  subsets: ["latin"], // Puedes especificar los subconjuntos que necesites
+  weight:["300", "400", "500", "700"], // Puedes especificar los pesos que necesites
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const ubuntuMono = Ubuntu_Mono({
+  subsets: ["latin"], // Puedes especificar los subconjuntos que necesites
+  weight:["400"], // Puedes especificar los pesos que necesites
+});
+
+const maven = Maven_Pro({
+  subsets: ["latin"], // Puedes especificar los subconjuntos que necesites
+  weight:["400", "500", "700"], // Puedes especificar los pesos que necesites
+  variable: "Maven_Pro", // Puedes especificar el nombre de la variable
 });
 
 export const metadata = {
@@ -20,11 +25,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${ubuntu.variable} ${maven.variable} antialiased`}>
         {children}
       </body>
     </html>
   );
 }
+
